@@ -19,11 +19,19 @@ const selectedCaseInfo = document.querySelector('.selected-case-info');
 const toggleDeletedCasesBtn = document.getElementById('toggleDeletedCasesBtn');
 const deletedCasesSection = document.getElementById('deletedCasesSection');
 const deletedCaseList = document.getElementById('deletedCaseList');
+const usernameElement = document.getElementById('username');
+const logoutBtn = document.getElementById('logoutBtn');
 
 // アプリケーションの初期化
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
+    // 認証チェック - 未ログインならログインページへリダイレクト
+    if (!checkAuth()) return;
+    
+    // ユーザー情報を表示
+    displayUserInfo();
+    
     // ローカルストレージから先に読み込む
     const savedCases = loadInitialData();
     if (savedCases) {
@@ -37,6 +45,13 @@ function init() {
     
     // 削除済み案件データを読み込む
     loadDeletedCases();
+}
+
+// ユーザー情報の表示
+function displayUserInfo() {
+    if (usernameElement) {
+        usernameElement.textContent = getUsername();
+    }
 }
 
 // 案件データの読み込み
@@ -288,8 +303,42 @@ function formatDateTime(date) {
     return `${year}年${month}月${day}日 ${hours}:${minutes}`;
 }
 
+// 認証チェック
+function checkAuth() {
+    // ローカルストレージからユーザー情報を取得
+    const user = localStorage.getItem('user');
+    
+    if (!user) {
+        // 未ログインの場合、ログインページへリダイレクト
+        window.location.href = 'login.html';
+        return false;
+    }
+    
+    return true;
+}
+
+// ユーザー名の取得
+function getUsername() {
+    const user = localStorage.getItem('user');
+    return JSON.parse(user).username;
+}
+
+// ログアウト処理
+function logout() {
+    // ローカルストレージからユーザー情報を削除
+    localStorage.removeItem('user');
+    
+    // ログインページへリダイレクト
+    window.location.href = 'login.html';
+}
+
 // イベントリスナーの設定
 function setupEventListeners() {
+    // ログアウトボタン
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', logout);
+    }
+    
     // 新規案件作成ボタン
     createCaseBtn.addEventListener('click', () => {
         createCaseModal.style.display = 'block';

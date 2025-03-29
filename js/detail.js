@@ -12,11 +12,19 @@ const editDateModal = document.getElementById('editDateModal');
 const editDateForm = document.getElementById('editDateForm');
 const newTargetDate = document.getElementById('newTargetDate');
 const closeBtn = document.querySelector('.close-btn');
+const usernameElement = document.getElementById('username');
+const logoutBtn = document.getElementById('logoutBtn');
 
 // アプリケーションの初期化
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
+    // 認証チェック - 未ログインならログインページへリダイレクト
+    if (!checkAuth()) return;
+    
+    // ユーザー情報を表示
+    displayUserInfo();
+    
     // URLパラメータから案件IDを取得
     const urlParams = new URLSearchParams(window.location.search);
     const caseId = urlParams.get('id');
@@ -27,6 +35,13 @@ function init() {
     } else {
         // IDが指定されていない場合、一覧に戻る
         window.location.href = 'index.html';
+    }
+}
+
+// ユーザー情報の表示
+function displayUserInfo() {
+    if (usernameElement) {
+        usernameElement.textContent = getUsername();
     }
 }
 
@@ -112,6 +127,11 @@ function displayCaseDetails() {
 
 // イベントリスナーの設定
 function setupEventListeners() {
+    // ログアウトボタン
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', logout);
+    }
+    
     // 期日修正ボタン
     editDateBtn.addEventListener('click', () => {
         editDateModal.style.display = 'block';
@@ -174,19 +194,31 @@ function formatDate(dateString) {
     return `${year}年${month}月${day}日`;
 }
 
-// アプリケーション起動時にローカルストレージから案件データを復元
-window.addEventListener('load', () => {
-    const savedCases = localStorage.getItem('patentCases');
-    if (savedCases) {
-        const cases = JSON.parse(savedCases);
-        const urlParams = new URLSearchParams(window.location.search);
-        const caseId = urlParams.get('id');
-        
-        if (caseId) {
-            currentCase = cases.find(c => c.id == caseId);
-            if (currentCase) {
-                displayCaseDetails();
-            }
-        }
+// 認証チェック
+function checkAuth() {
+    // ローカルストレージからユーザー情報を取得
+    const user = localStorage.getItem('user');
+    
+    if (!user) {
+        // 未ログインの場合、ログインページへリダイレクト
+        window.location.href = 'login.html';
+        return false;
     }
-});
+    
+    return true;
+}
+
+// ユーザー名の取得
+function getUsername() {
+    const user = localStorage.getItem('user');
+    return JSON.parse(user).username;
+}
+
+// ログアウト処理
+function logout() {
+    // ローカルストレージからユーザー情報を削除
+    localStorage.removeItem('user');
+    
+    // ログインページへリダイレクト
+    window.location.href = 'login.html';
+}

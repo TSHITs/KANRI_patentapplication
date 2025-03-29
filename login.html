@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログイン - 特許出願管理システム</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container login-container">
+        <header>
+            <h1><i class="fas fa-lightbulb"></i> 特許出願管理システム</h1>
+        </header>
+
+        <main>
+            <div id="email-form-container" class="login-form-container">
+                <form id="emailForm" class="login-form">
+                    <h2><i class="fas fa-envelope"></i> メールアドレス認証</h2>
+                    <p class="login-message">@ip-healthcare.comドメインのメールアドレスで認証してください</p>
+                    
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> メールアドレス</label>
+                        <input type="email" id="email" name="email" placeholder="example@ip-healthcare.com" required>
+                    </div>
+                    <div id="emailError" class="error-message"></div>
+                    <div class="form-group">
+                        <button type="submit" class="primary-btn">
+                            <i class="fas fa-paper-plane"></i> 認証コードを送信
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="code-form-container" class="login-form-container" style="display: none;">
+                <form id="codeForm" class="login-form">
+                    <h2><i class="fas fa-key"></i> 認証コード入力</h2>
+                    <p class="login-message">
+                        メールアドレス「<span id="emailDisplay"></span>」に送信された6桁の認証コードを入力してください
+                    </p>
+                    
+                    <div class="form-group">
+                        <label for="authCode"><i class="fas fa-lock"></i> 認証コード</label>
+                        <input type="text" id="authCode" name="authCode" placeholder="000000" maxlength="6" pattern="[0-9]{6}" required>
+                    </div>
+                    <div id="codeError" class="error-message"></div>
+                    <div class="form-actions">
+                        <button type="button" id="backToEmailBtn" class="secondary-btn">
+                            <i class="fas fa-arrow-left"></i> 戻る
+                        </button>
+                        <button type="submit" class="primary-btn">
+                            <i class="fas fa-sign-in-alt"></i> 認証
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="code-display" class="code-notification" style="display: none;">
+                <p><i class="fas fa-info-circle"></i> <strong>デモ用認証コード:</strong> <span id="generatedCode"></span></p>
+                <p class="small-text">※実際のシステムではメールでコードが送信されます</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 IP Healthcare Inc. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script src="js/login.js"></script>
+</body>
+</html>

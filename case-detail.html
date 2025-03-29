@@ -12,7 +12,13 @@
     <div class="container">
         <header>
             <h1><i class="fas fa-lightbulb"></i> 特許出願管理システム</h1>
-            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> 案件一覧に戻る</a>
+            <div class="user-info">
+                <span id="currentUser"><i class="fas fa-user"></i> ユーザー: <span id="username">-</span></span>
+                <button id="logoutBtn" class="secondary-btn"><i class="fas fa-sign-out-alt"></i> ログアウト</button>
+            </div>
+            <div class="header-buttons">
+                <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> 案件一覧に戻る</a>
+            </div>
         </header>
 
         <main class="detail-page">
@@ -64,6 +70,7 @@
 
     </div>
 
+    <script src="js/auth.js"></script>
     <script src="js/detail.js"></script>
 </body>
 </html>

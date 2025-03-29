@@ -12,6 +12,10 @@
     <div class="container">
         <header>
             <h1><i class="fas fa-lightbulb"></i> 特許出願管理システム</h1>
+            <div class="user-info">
+                <span id="currentUser"><i class="fas fa-user"></i> ユーザー: <span id="username">-</span></span>
+                <button id="logoutBtn" class="secondary-btn"><i class="fas fa-sign-out-alt"></i> ログアウト</button>
+            </div>
             <div class="header-buttons">
                 <button id="deleteCaseBtn" class="danger-btn" disabled><i class="fas fa-trash-alt"></i> 選択案件削除</button>
                 <button id="createCaseBtn" class="primary-btn"><i class="fas fa-plus"></i> 新規案件作成</button>
@@ -112,6 +116,7 @@
         </div>
     </div>
 
+    <script src="js/auth.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

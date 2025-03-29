@@ -515,6 +515,44 @@ textarea:focus {
     line-height: 1.5;
 }
 
+/* ユーザー情報とログアウトボタン */
+.user-info {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+    gap: 15px;
+    color: var(--text-color);
+}
+
+#currentUser {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#currentUser i {
+    margin-right: 5px;
+    color: var(--primary-color);
+}
+
+#username {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#logoutBtn {
+    padding: 8px 15px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+#logoutBtn i {
+    margin-right: 5px;
+}
+
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
     header {
@@ -538,5 +576,23 @@ textarea:focus {
     .modal-content {
         margin: 15% auto;
         width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .header-buttons {
+        margin-top: 10px;
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .user-info {
+        width: 100%;
+        justify-content: space-between;
     }
 }

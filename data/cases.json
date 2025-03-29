@@ -1,0 +1,69 @@
+[
+  {
+    "id": 1,
+    "caseNumber": "PAT-2025-001",
+    "title": "自動運転車の安全装置",
+    "targetDate": "2025-04-15",
+    "status": [
+      {
+        "date": "2025-03-15",
+        "sender": "山田太郎",
+        "receiver": "patent@ip-healthcare.com",
+        "summary": "初回打ち合わせ議事録を送付。発明の内容についての基本事項を確認"
+      },
+      {
+        "date": "2025-03-20",
+        "sender": "patent@ip-healthcare.com",
+        "receiver": "山田太郎",
+        "summary": "先行技術調査の結果を送付。新規性・進歩性の見解を添付"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "caseNumber": "PAT-2025-002",
+    "title": "IoTデバイスの省電力化技術",
+    "targetDate": "2025-04-01",
+    "status": [
+      {
+        "date": "2025-03-10",
+        "sender": "佐藤花子",
+        "receiver": "patent@ip-healthcare.com",
+        "summary": "発明提案書の送付"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "caseNumber": "PAT-2025-003",
+    "title": "AIを用いた画像認識方法",
+    "targetDate": "2025-05-20",
+    "status": []
+  },
+  {
+    "id": 4,
+    "caseNumber": "PAT-2025-004",
+    "title": "ブロックチェーン技術を用いた契約管理システム",
+    "targetDate": "2025-03-31",
+    "status": [
+      {
+        "date": "2025-03-01",
+        "sender": "鈴木一郎",
+        "receiver": "patent@ip-healthcare.com",
+        "summary": "発明概要の送付"
+      },
+      {
+        "date": "2025-03-05",
+        "sender": "patent@ip-healthcare.com",
+        "receiver": "鈴木一郎",
+        "summary": "追加情報のリクエスト"
+      },
+      {
+        "date": "2025-03-15",
+        "sender": "鈴木一郎",
+        "receiver": "patent@ip-healthcare.com",
+        "summary": "追加情報の提供と図面の送付"
+      }
+    ]
+  }
+]

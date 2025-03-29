@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: patent-management-system
+    runtime: static
+    buildCommand: echo "Static site deployment"
+    staticPublishPath: .
+    envVars:
+      - key: SITE_ROOT
+        value: /
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

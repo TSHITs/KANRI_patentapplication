@@ -46,6 +46,309 @@
                         <p>社内管理番号が記載され、@ip-healthcare.comドメインを持つユーザーとのメール送受信があると、ここに自動記録されます。</p>
                     </div>
                 </div>
+                
+                <!-- メール要約セクション -->
+                <div class="email-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-envelope"></i> 関連メール</h3>
+                        <button id="refreshEmailsBtn" class="small-btn">
+                            <i class="fas fa-sync"></i> 更新
+                        </button>
+                    </div>
+                    
+                    <div id="emailLoading" class="loading-spinner" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i> メール情報を取得中...
+                    </div>
+                    
+                    <div id="emailContainer" class="email-container">
+                        <div id="noEmails" class="no-emails">
+                            <p>関連するメールはありません。</p>
+                            <p>社内管理番号[BDM####]が記載され、@ip-healthcare.comドメインのアドレスがToまたはCCに含まれるメールが表示されます。</p>
+                        </div>
+                        <div id="emailList" class="email-list">
+                            <!-- JavaScriptで動的に生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 期日修正モーダル -->
+        <div id="editDateModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>出願目標期日の修正</h2>
+                    <span class="close-btn">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="editDateForm">
+                        <div class="form-group">
+                            <label for="newTargetDate">新しい出願目標期日</label>
+                            <input type="date" id="newTargetDate" required>
+                        </div>
+                        <button type="submit" class="primary-btn">更新</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/detail.js"></script>
+    <script src="js/email-handler.js"></script>
+</body>
+</html>
+!DOCTYPE html>
+<html lang="ja">
+<head><!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案件詳細 | 特許出願管理システム</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-lightbulb"></i> 特許出願管理システム</h1>
+            <div class="user-info">
+                <span id="currentUser"><i class="fas fa-user"></i> ユーザー: <span id="username">-</span></span>
+                <button id="logoutBtn" class="secondary-btn"><i class="fas fa-sign-out-alt"></i> ログアウト</button>
+            </div>
+            <div class="header-buttons">
+                <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> 案件一覧に戻る</a>
+            </div>
+        </header>
+
+        <main class="detail-page">
+            <div class="case-info-container">
+                <div class="case-header">
+                    <h2 id="caseTitle">案件詳細</h2>
+                    <div class="case-info">
+                        <p><strong>社内管理番号:</strong> <span id="caseNumber"></span></p>
+                        <p>
+                            <strong>出願目標期日:</strong> 
+                            <span id="targetDate"></span>
+                            <button id="editDateBtn" class="small-btn"><i class="fas fa-pencil-alt"></i> 期日修正</button>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="status-header">
+                    <h3>ステータス履歴</h3>
+                </div>
+
+                <div id="statusHistory" class="status-history">
+                    <!-- JavaScriptで動的に生成 -->
+                    <div class="no-status" id="noStatus">
+                        <p>ステータス情報はまだありません。</p>
+                        <p>社内管理番号が記載され、@ip-healthcare.comドメインを持つユーザーとのメール送受信があると、ここに自動記録されます。</p>
+                    </div>
+                </div>
+                
+                <!-- メール要約セクション -->
+                <div class="email-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-envelope"></i> 関連メール</h3>
+                        <button id="refreshEmailsBtn" class="small-btn">
+                            <i class="fas fa-sync"></i> 更新
+                        </button>
+                    </div>
+                    
+                    <div id="emailLoading" class="loading-spinner" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i> メール情報を取得中...
+                    </div>
+                    
+                    <div id="emailContainer" class="email-container">
+                        <div id="noEmails" class="no-emails">
+                            <p>関連するメールはありません。</p>
+                            <p>社内管理番号[BDM####]が記載され、@ip-healthcare.comドメインのアドレスがToまたはCCに含まれるメールが表示されます。</p>
+                        </div>
+                        <div id="emailList" class="email-list">
+                            <!-- JavaScriptで動的に生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 期日修正モーダル -->
+        <div id="editDateModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>出願目標期日の修正</h2>
+                    <span class="close-btn">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="editDateForm">
+                        <div class="form-group">
+                            <label for="newTargetDate">新しい出願目標期日</label>
+                            <input type="date" id="newTargetDate" required>
+                        </div>
+                        <button type="submit" class="primary-btn">更新</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/detail.js"></script>
+    <script src="js/email-handler.js"></script>
+</body>
+</html>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案件詳細 | 特許出願管理システム</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body><!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案件詳細 | 特許出願管理システム</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-lightbulb"></i> 特許出願管理システム</h1>
+            <div class="user-info">
+                <span id="currentUser"><i class="fas fa-user"></i> ユーザー: <span id="username">-</span></span>
+                <button id="logoutBtn" class="secondary-btn"><i class="fas fa-sign-out-alt"></i> ログアウト</button>
+            </div>
+            <div class="header-buttons">
+                <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> 案件一覧に戻る</a>
+            </div>
+        </header>
+
+        <main class="detail-page">
+            <div class="case-info-container">
+                <div class="case-header">
+                    <h2 id="caseTitle">案件詳細</h2>
+                    <div class="case-info">
+                        <p><strong>社内管理番号:</strong> <span id="caseNumber"></span></p>
+                        <p>
+                            <strong>出願目標期日:</strong> 
+                            <span id="targetDate"></span>
+                            <button id="editDateBtn" class="small-btn"><i class="fas fa-pencil-alt"></i> 期日修正</button>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="status-header">
+                    <h3>ステータス履歴</h3>
+                </div>
+
+                <div id="statusHistory" class="status-history">
+                    <!-- JavaScriptで動的に生成 -->
+                    <div class="no-status" id="noStatus">
+                        <p>ステータス情報はまだありません。</p>
+                        <p>社内管理番号が記載され、@ip-healthcare.comドメインを持つユーザーとのメール送受信があると、ここに自動記録されます。</p>
+                    </div>
+                </div>
+                
+                <!-- メール要約セクション -->
+                <div class="email-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-envelope"></i> 関連メール</h3>
+                        <button id="refreshEmailsBtn" class="small-btn">
+                            <i class="fas fa-sync"></i> 更新
+                        </button>
+                    </div>
+                    
+                    <div id="emailLoading" class="loading-spinner" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i> メール情報を取得中...
+                    </div>
+                    
+                    <div id="emailContainer" class="email-container">
+                        <div id="noEmails" class="no-emails">
+                            <p>関連するメールはありません。</p>
+                            <p>社内管理番号[BDM####]が記載され、@ip-healthcare.comドメインのアドレスがToまたはCCに含まれるメールが表示されます。</p>
+                        </div>
+                        <div id="emailList" class="email-list">
+                            <!-- JavaScriptで動的に生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 期日修正モーダル -->
+        <div id="editDateModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>出願目標期日の修正</h2>
+                    <span class="close-btn">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="editDateForm">
+                        <div class="form-group">
+                            <label for="newTargetDate">新しい出願目標期日</label>
+                            <input type="date" id="newTargetDate" required>
+                        </div>
+                        <button type="submit" class="primary-btn">更新</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/detail.js"></script>
+    <script src="js/email-handler.js"></script>
+</body>
+</html>
+
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-lightbulb"></i> 特許出願管理システム</h1>
+            <div class="user-info">
+                <span id="currentUser"><i class="fas fa-user"></i> ユーザー: <span id="username">-</span></span>
+                <button id="logoutBtn" class="secondary-btn"><i class="fas fa-sign-out-alt"></i> ログアウト</button>
+            </div>
+            <div class="header-buttons">
+                <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> 案件一覧に戻る</a>
+            </div>
+        </header>
+
+        <main class="detail-page">
+            <div class="case-info-container">
+                <div class="case-header">
+                    <h2 id="caseTitle">案件詳細</h2>
+                    <div class="case-info">
+                        <p><strong>社内管理番号:</strong> <span id="caseNumber"></span></p>
+                        <p>
+                            <strong>出願目標期日:</strong> 
+                            <span id="targetDate"></span>
+                            <button id="editDateBtn" class="small-btn"><i class="fas fa-pencil-alt"></i> 期日修正</button>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="status-header">
+                    <h3>ステータス履歴</h3>
+                </div>
+
+                <div id="statusHistory" class="status-history">
+                    <!-- JavaScriptで動的に生成 -->
+                    <div class="no-status" id="noStatus">
+                        <p>ステータス情報はまだありません。</p>
+                        <p>社内管理番号が記載され、@ip-healthcare.comドメインを持つユーザーとのメール送受信があると、ここに自動記録されます。</p>
+                    </div>
+                </div>
             </div>
         </main>
 

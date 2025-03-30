@@ -4,7 +4,7 @@
  */
 
 // 設定
-const API_BASE_URL = 'https://patent-api.onrender.com/api'; // 実際のバックエンドAPIエンドポイント
+const API_BASE_URL = 'http://localhost:3000/api'; // ローカル開発用：実際のデプロイではRenderのURLに変更
 const MOCK_ENABLED = true; // 開発中はモックデータを使用（実際の実装時はfalseに変更）
 
 // グローバル変数
